@@ -31,17 +31,17 @@
         var currentDate = moment().format('MMMM Do YYYY');
         $("#currentDay").text(currentDate);
         var currentTime = moment();
-        var bussinessHours = ["9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm"];
+        var businessHours = ["9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm"];
 
         //Input area and buttons are created here
-        for (i = 0; i < bussinessHours.length; i++) {
+        for (i = 0; i < businessHours.length; i++) {
             $("<div>").attr({ class: "input-group mb-3", id: i + "timeblock" }).appendTo(".container");
             $("<div>").attr({ class: "input-group-prepend", id: i + "prepend" }).appendTo("#" + i + "timeblock");
-            $("<span>").attr({ class: "input-group-text", id: i + "time" }).text(bussinessHours[i]).appendTo("#" + i + "prepend");
+            $("<span>").attr({ class: "input-group-text", id: i + "time" }).text(businessHours[i]).appendTo("#" + i + "prepend");
             $("<input>").attr({ type: "text", class: "form-control", id: i + "textArea" }).appendTo("#" + i + "timeblock");
             $("<div>").attr({ class: "input-group-append", id: i + "button" }).appendTo("#" + i + "timeblock");
             $("<button>").attr({ class: "btn btn-outline-secondary", type: "button", id: "button" + i }).appendTo("#" + i + "button").text("Save");
-            var test = moment(bussinessHours[i], "ha");
+            var test = moment(businessHours[i], "ha");
             if (currentTime.isBefore(test)) {
                 $("#" + i + "textArea").attr("style", "background-color:lightgreen");
             } else if (currentTime.isAfter(test)) {

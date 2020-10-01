@@ -30,9 +30,10 @@
   <script>
     // //variables
     var currentDate = moment().format('MMMM Do YYYY');
-    var currentTime = moment().format("h")
-    //Create Timbelocks
+    var currentTime = moment().format("h");
+    var amOrPm = moment().format("'a'");
     var pm = 0;
+    //Create Timbelocks
     for (i = 9; i < 18; i++) {
       if (i == 9 || i == 10 || i == 11 || i == 12) {
         $("<div>").attr({ class: "input-group mb-3", id: i + "timeblock" }).appendTo(".container");
@@ -41,11 +42,11 @@
         $("<input>").attr({ type: "text", class: "form-control", id: i + "textArea" }).appendTo("#" + i + "timeblock");
         $("<div>").attr({ class: "input-group-append", id: i + "button" }).appendTo("#" + i + "timeblock");
         $("<button>").attr({ class: "btn btn-outline-secondary", type: "button", id: "button" + i }).appendTo("#" + i + "button").text("Save");
-        if (currentTime[0] > i && currentTime[1] == "a") {
+        if (currentTime > i && amOrPm == "am") {
           $("#" + i + "textArea").attr("style", "background-color:lightgray");
-        } else if (currentTime < i && currentTime[1] == "a") {
+        } else if (currentTime < i && amOrPm == "am") {
           $("#" + i + "textArea").attr("style", "background-color:lightgreen");
-        } else if (currentTime == i && currentTime[1] == "a") {
+        } else if (currentTime == i && amOrPm == "am") {
           $("#" + i + "textArea").attr("style", "background-color:lightcoral");
         } else {
           $("#" + i + "textArea").attr("style", "background-color:lightgray");
@@ -58,11 +59,11 @@
         $("<input>").attr({ type: "text", class: "form-control", id: i + "textArea" }).appendTo("#" + pm + "timeblock");
         $("<div>").attr({ class: "input-group-append", id: pm + "button" }).appendTo("#" + pm + "timeblock");
         $("<button>").attr({ class: "btn btn-outline-secondary", type: "button", id: "button" + i }).appendTo("#" + pm + "button").text("Save");
-        if (currentTime != (pm + "time")) {
+        if (currentTime > pm && amOrPm == "am") {
           $("#" + i + "textArea").attr("style", "background-color:lightgray");
-        } else if (currentTime < pm && currentTime[1] == "p") {
+        } else if (currentTime < pm && amOrPm == "pm") {
           $("#" + i + "textArea").attr("style", "background-color:lightgreen");
-        } else if (currentTime == pm && currentTime[1] == "p") {
+        } else if (currentTime == pm && amOrPm == "pm") {
           $("#" + i + "textArea").attr("style", "background-color:lightcoral");
         } else {
           $("#" + i + "textArea").attr("style", "background-color:lightgray");

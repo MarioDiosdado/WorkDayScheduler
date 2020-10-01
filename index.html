@@ -29,9 +29,12 @@
 
         //Variables
         var currentDate = moment().format('MMMM Do YYYY');
+        //Here we set the current date for the top of the page
         $("#currentDay").text(currentDate);
-        var currentTime = moment();
+        var currentTime = moment().format("HH");
         var businessHours = ["9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm"];
+        //This j variable is used because a global variable was needed for the colors section
+        var j = 0;
 
         //Input area and buttons are created here
         for (i = 0; i < businessHours.length; i++) {
@@ -41,15 +44,19 @@
             $("<input>").attr({ type: "text", class: "form-control", id: i + "textArea" }).appendTo("#" + i + "timeblock");
             $("<div>").attr({ class: "input-group-append", id: i + "button" }).appendTo("#" + i + "timeblock");
             $("<button>").attr({ class: "btn btn-outline-secondary", type: "button", id: "button" + i }).appendTo("#" + i + "button").text("Save");
-            var test = moment(businessHours[i], "ha");
-            if (currentTime.isBefore(test)) {
-                $("#" + i + "textArea").attr("style", "background-color:lightgreen");
-            } else if (currentTime.isAfter(test)) {
-                $("#" + i + "textArea").attr("style", "background-color:lightgray");
-            } else if (currentTime.isSame(test)) {
-                $("#" + i + "textArea").attr("style", "background-color:lightcoral");
-            }
         }
+        //Here we give colors depending on hour
+        for (i = 9; i < 18; i++) {
+            if (currentTime < i) {
+                $("#" + j + "textArea").attr("style", "background-color:lightgreen");
+            } else if (currentTime > i) {
+                $("#" + j + "textArea").attr("style", "background-color:lightgray");
+            } else if (currentTime == i) {
+                $("#" + j + "textArea").attr("style", "background-color:lightcoral");
+            }
+            j++;
+        }
+
         //Getting items from local storage
         for (i = 0; i <= 8; i++) {
             $("#" + i + "textArea").val(localStorage.getItem("content" + i));
@@ -63,7 +70,6 @@
             localStorage.setItem("content" + e, setStorage);
             console.log(e);
         })
-
 
     </script>
 </body>

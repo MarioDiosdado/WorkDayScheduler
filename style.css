@@ -81,3 +81,7 @@ textarea{
 .form-control {
   height: 80px;
 }
+
+.input-group-text {
+  width: 80px!important;
+}
